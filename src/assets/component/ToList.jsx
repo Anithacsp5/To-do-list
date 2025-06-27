@@ -17,6 +17,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { MdDelete } from "react-icons/md";
 import { FaUserEdit } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'
+
 
 const ToList = () => {
   const [searchText, setSearchText] = useState("");
@@ -27,6 +29,12 @@ const ToList = () => {
 
   const [editDialog, setEditDialog] = useState(false);
   const [editData, setEditData] = useState(null);
+  let navigate=useNavigate();
+ const handleLogout = () => {
+  localStorage.removeItem("isLoggedIn");
+  navigate("/");
+};
+
 
   
   const handleAddTask = () => {
@@ -190,7 +198,9 @@ const ToList = () => {
           )}
         </ul>
 
-        
+<Button onClick={handleLogout} variant="outlined" style={{ marginTop: '20px' }}>
+  Logout
+</Button>
         <Dialog open={editDialog} onClose={() => setEditDialog(false)} fullWidth maxWidth="sm">
           <DialogTitle>Edit Task</DialogTitle>
           <DialogContent>

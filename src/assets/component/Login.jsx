@@ -1,10 +1,13 @@
+
 import React from 'react';
 import ToList from './ToList.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -16,7 +19,7 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <ToList />;
+     navigate("/ToList");
   }
 
   return (
